@@ -1,40 +1,38 @@
-## Understanding @ConfigurationProperties Annotation in SpringBoot
+## Introduction
+As usual, this article begins by addressing three key questions: what, why, and how, followed by an example.
+If you are a developer working on a Spring Boot application, you're likely familiar with application properties used to manage externalized settings such as environment configurations, database connections, and custom properties.
+The challenge arises in how to handle or read these properties efficiently and professionally. The solution is the @ConfigurationProperties annotation, which allows developers to map external configurations directly to Java objects.
+As usual, this article begins by addressing three key questions: what, why, and how, followed by an example. It explores the purpose, usage, and benefits of utilizing @ConfigurationProperties for managing application configurations. So, let's dive in!
+### 1. What is @ConfigurationProperties Annotation?
+   The @ConfigurationProperties annotation in Spring Boot is used to link or bind external configuration properties defined in application.properties or application.yml to a Plain Old Java Object (POJO).
+   This simplifies the management of application-specific settings, ensuring a clean and organized approach.
+   Key Features:
+   Lets you directly map configuration values to fields in a Java object.
+   Works with nested properties and complex data structures.
+   Provides type safety with strong validation of properties when the application starts.
 
-### Introduction
-In Spring Boot, configuration management is essential to handle externalized properties such as environment settings, database connections, and custom application properties. 
-One powerful and convenient tool for doing this is the @ConfigurationProperties annotation, which allows developers to map external configurations directly to Java objects. This article delves into the purpose, usage, and benefits of using @ConfigurationProperties for managing application settings.
+### 2. Why Use @ConfigurationProperties Annotation?
+   Using @ConfigurationProperties provides several advantages:
+   Application configurations are decoupled from the business logic, promoting cleaner code.
+   Unlike reading configuration values directly from Environment or @Value , @ConfigurationProperties ensures that properties are bound to types correctly.
+   It allows for grouping related configurations together under a specific prefix, making the properties easier to manage and understand.
 
-### What is @ConfigurationProperties?
-The @ConfigurationProperties annotation in Spring Boot is used to bind external configuration properties (defined in application.properties or application.yml) to a Plain Old Java Object (POJO). This makes it easier to handle application-specific settings in a clean and organized way. By grouping related configurations together under a specific prefix, we can avoid scattering properties all over the codebase.
-Key Features:
-Allows you to map configuration values directly to fields in a Java object.
-Supports nested properties and hierarchical data structures.
-Ensures type safety, providing strong validation of properties at startup.
-
-### Why Use @ConfigurationProperties?
-Using @ConfigurationProperties provides several advantages:
-Separation of concerns: Application configurations are decoupled from the business logic, promoting cleaner code.
-Type safety: Unlike reading configuration values directly from Environment or @Value, @ConfigurationProperties ensures that properties are bound to types correctly.
-Structured and organized configurations: It allows for grouping related configurations together under a specific prefix, making the properties easier to manage and understand.
-
-### How @ConfigurationProperties Works
-At its core, @ConfigurationProperties maps property values defined in the configuration file (like application.yml or application.properties) to fields in a Java class. The key aspect is that you specify a prefix for properties to be bound.
-Example: Mapping Properties to a POJO
-
-Let's walk through an example where we use @ConfigurationProperties to load application-specific settings.
-
-##### Step 1: Define Configuration Properties in application.properites file. 
-In this example, we configure the name, description, and version of an application. These are the properties we want to map.
-
+### 3. How @ConfigurationProperties Works
+   At its core, @ConfigurationProperties maps property values defined in the configuration file (like application.yml or application.properties) to fields in a Java class. The key aspect is that you specify a prefix for properties to be bound.
+   Let's walk through an example where we use @ConfigurationProperties to load application-specific settings.
+### 4. Example: Using the @ConfigurationProperties Annotation in Spring Boot
+   Note:The dependencies used in this project are Spring Boot Starter Web and Lombok.
+   
+##### Step 1: Define Configuration Properties in application.properites file.
+   In this example, we configure the name, description, and version of an application. These are the properties we want to map.
+   
 application.properties
 ```
-spring.application.name=ConfigMaster
-
-app.name=ConfigApp
-app.description=A site for config management
-app.version=1.0
+   spring.application.name=ConfigMaster
+    app.name=ConfigApp
+    app.description=A site for config management
+    app.version=1.0
 ```
-
 ##### Step 2: Create a POJO to Bind the Properties
 
 ```
@@ -57,7 +55,6 @@ In this class, the @ConfigurationProperties annotation indicates that the proper
 
 ##### Step 3: Injecting the Configuration in Your Application
 Now, you can inject the AppProperties class wherever it's needed. For instance, in a controller or service class, you can access the configuration values:
-
 ```
 package com.configmaster.api;
 
@@ -85,12 +82,14 @@ private final AppProperties appProperties;
     }
 }
 ```
-
-The ConfigTestApiEndPoint class accesses the properties defined in AppProperties and can return them as part of a REST endpoint.
+The @ConfigTestApiEndPoint class accesses the properties defined in AppProperties and can return them as part of a REST endpoint.
 
 ### Conclusion
-The @ConfigurationProperties annotation in Spring Boot offers a powerful and flexible way to manage external configuration properties. It promotes better separation of concerns by decoupling configuration from business logic, ensures type safety, and allows for easy validation of property values. By leveraging this annotation, you can keep your code clean, maintainable, and scalable, making it a crucial part of modern Spring Boot applications.
+The @ConfigurationProperties annotation in Spring Boot offers a powerful and flexible way to manage external configuration properties.
+It promotes better separation of concerns by decoupling configuration from business logic, ensures type safety, and allows for easy validation of property values.
+By leveraging this annotation, you can keep your code clean, maintainable, and scalable, making it a crucial part of modern Spring Boot applications.
 For any project that requires organized management of configuration data, @ConfigurationProperties is a must-use tool!
 
-Github URL: https://github.com/MyArticleHub/ConfigMaster
+Medium URL: `https://medium.com/@midhunbalan.dev/understanding-configurationproperties-annotation-in-springboot-674550f51f9a`
+
 Thank you so much for reading! Feel free to leave a comment if you have any questions. Have a wonderful day!
